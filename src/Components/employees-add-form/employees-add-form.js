@@ -11,6 +11,14 @@ class EmployeesAddForm extends Component {
             salary: ''
         }
     }
+    onValueSubmit = (e) => {
+        e.preventDefault();
+        this.props.onValueSubmit(this.state.name, this.state.salary);
+        this.setState({
+            name:'',
+            salary:''
+        })
+    }
 
     onValueChange = (e) => {
         this.setState({
@@ -23,7 +31,8 @@ class EmployeesAddForm extends Component {
         return (            
             <div className='app-add-form'>
                 <h3> Добавьте нового сотрудника </h3>
-                <form className='add-form d-flex'>
+                <form className='add-form d-flex'
+                onSubmit={this.onValueSubmit}>
                     <input type='text'
                         className='form-control new-post-label'
                         placeholder='Как его зовут'
@@ -37,7 +46,8 @@ class EmployeesAddForm extends Component {
                         value={salary}   //чтобы значение хранилось не на странице а в реакте
                         onChange={this.onValueChange}/>
                     <button type='submit'
-                        className='btn btn-outline-submit'>Добавить</button>
+                        className='btn btn-outline-submit'
+                        >Добавить</button>
 
                 </form>
             </div>
